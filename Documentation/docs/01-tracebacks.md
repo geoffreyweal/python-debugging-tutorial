@@ -39,7 +39,7 @@ Read it like this:
 | The stack of `File "...", line N, in ...` entries | The chain of function calls that led to the crash, from the top of the program down. |
 | The final line: `ZeroDivisionError: division by zero` | The **type** of error and a message explaining it. |
 
-So: read the traceback **from the bottom up**.
+So, read the traceback **from the bottom up**: 
 
 1. The last line says *what* went wrong: a division by zero.
 2. The entry just above it says *where*: line 2, inside `average`.

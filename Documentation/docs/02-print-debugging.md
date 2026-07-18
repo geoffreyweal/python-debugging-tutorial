@@ -1,6 +1,6 @@
 # 2. Print debugging
 
-The simplest debugging technique: put `print()` statements in your code to see what's actually happening. Everyone does it, it works everywhere, and done *well* it's genuinely effective. Done badly, it produces a wall of unlabelled numbers you can't interpret.
+The simplest debugging technique: put `print()` statements in your code to see what's actually happening. Everyone does it, it works everywhere, and done *well* it's genuinely effective. 
 
 ## A buggy example
 
@@ -68,6 +68,49 @@ DEBUG checking 'cat': count=1, count > 2 is False
 ```
 
 Now the bug is obvious: `counts` is correct (`'the'` appears 2 times), but the condition `count > 2` should be `count >= 2` (or `count > 1`). The first loop was never the problem — without the prints, you might have stared at it for ten minutes.
+
+## Prints help even when the program *does* crash
+
+Print debugging isn't only for silent, wrong-answer bugs — it's just as useful when you *do* get a traceback. A [traceback](01-tracebacks.md) tells you **where** the program crashed and **what type** of error it was, but usually not the **values** that led it there. A `print()` placed just before the crashing line fills that gap.
+
+Here `normalise` divides by the largest reading, which blows up on an all-zero dataset:
+
+```python title="scale.py"
+def scale(values, factor):
+    return [v * factor for v in values]
+
+def normalise(readings):
+    biggest = max(readings)
+    return scale(readings, 1 / biggest)
+
+datasets = [[3, 8, 5], [0, 0, 0], [2, 9, 4]]
+for data in datasets:
+    print(normalise(data))
+```
+
+The traceback ends with `ZeroDivisionError: division by zero` and points at the `1 / biggest` line — but *which* of the three datasets caused it? Add one print to find out:
+
+```python hl_lines="3"
+def normalise(readings):
+    biggest = max(readings)
+    print(f"DEBUG normalise: {readings=}, {biggest=}", flush=True)
+    return scale(readings, 1 / biggest)
+```
+
+```console
+$ python3 scale.py
+DEBUG normalise: readings=[3, 8, 5], biggest=8
+[0.375, 1.0, 0.625]
+DEBUG normalise: readings=[0, 0, 0], biggest=0
+Traceback (most recent call last):
+  ...
+ZeroDivisionError: division by zero
+```
+
+The **last `DEBUG` line before the traceback** is your prime suspect: the all-zero dataset made `biggest` zero. The traceback showed the *symptom*; the print showed the *cause*.
+
+!!! tip "Add `flush=True` when a crash might swallow your output"
+    Normal `print()` output is buffered, while the traceback is written separately. If you redirect output to a file (`python3 scale.py > log.txt 2>&1`), a crash can cut off buffered prints or reorder them relative to the traceback. Passing `flush=True` forces each line out immediately, so your last-known-state print is never lost.
 
 ## The `f"{expr=}"` shortcut
 

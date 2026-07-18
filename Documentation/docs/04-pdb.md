@@ -1,6 +1,10 @@
 # 4. The Python debugger (pdb)
 
-A **debugger** pauses your program at a point you choose and drops you into an interactive prompt where you can inspect variables, run expressions, and step through the code line by line. Python ships one in the standard library: `pdb`. It works everywhere Python works — including over SSH on a remote machine where there's no IDE.
+Imagine your program is a car that won't run properly. Reading a [traceback](01-tracebacks.md) is like inspecting the car *after* it has stalled at the side of the road — you can see where it came to a stop, but not what was happening under the bonnet moment to moment. [Print statements](02-print-debugging.md) and [logs](03-logging.md) are like bolting a few extra gauges to the dashboard and reading them back after a test drive.
+
+A **debugger** is the next level up: it's like being able to freeze the engine mid-rev, lift the bonnet while it's still turning over, and inspect any part — every dial, wire, and moving piston — *in real time*. You can watch the machinery work one step at a time, pause it at the exact moment something looks wrong, and even nudge a part to test a fix before letting it run on.
+
+That is what a debugger does for code: it pauses your program at a point you choose and drops you into an interactive prompt where you can inspect variables, run expressions, and step through the code line by line. Python ships one in the standard library: `pdb`. It works everywhere Python works — including over SSH on a remote machine where there's no IDE.
 
 ## `breakpoint()` — the one function to remember
 

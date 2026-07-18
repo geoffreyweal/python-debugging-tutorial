@@ -14,10 +14,10 @@ Open a terminal and run:
 
 ```console
 $ python3 --version
-Python 3.13.7
+Python 3.14.4
 ```
 
-Any version from 3.9 up is fine. On Windows, use `python` instead of `python3`.
+Any version from 3.9 up is fine.
 
 ## Create a working folder
 

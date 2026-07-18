@@ -1,8 +1,8 @@
 # Debugging in Python
 
-Welcome! This is a hands-on tutorial for learning how to **find and fix bugs in Python code**.
+This is a hands-on tutorial for learning how to **find and fix bugs in Python code**.
 
-Debugging is one of the most important skills a programmer can have — most of the time you spend "programming" is actually spent working out why your code isn't doing what you expected. The good news is that debugging is a learnable, systematic skill, not a magic talent.
+Debugging is one of the most important skills a programmer can have — most of the time you spend "programming" is actually spent working out why your code isn't doing what you expected. The good news is that debugging is a learnable, systematic skill.
 
 ## What you will learn
 
@@ -20,7 +20,7 @@ By the end of this tutorial you will be able to:
 Each section introduces one technique, shows a worked example, and ends with a short exercise. The [Exercises](exercises.md) page collects larger, realistic buggy programs for you to fix using everything you've learned.
 
 !!! tip "The golden rule of debugging"
-    **Don't guess — observe.** Every technique in this tutorial is a different way of *observing* what your program is actually doing, so you can compare it to what you *think* it should be doing. The bug lives in the gap between those two.
+    **Don't guess — observe.** Every technique in this tutorial is a different way of *observing* what your program is actually doing, so you can compare it to what you *think* it should be doing.
 
 ## A systematic debugging strategy
 
