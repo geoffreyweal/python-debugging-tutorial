@@ -19,8 +19,8 @@ REPO="git@github.com:geoffreyweal/python-debugging-tutorial.git"
 chmod -R 777 *
 
 # (Re)initialise the git repository from scratch
-rm -rf .git
-git init
+#rm -rf .git
+#git init
 
 # Stage and commit everything (respects .gitignore)
 git add .
