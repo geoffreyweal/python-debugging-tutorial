@@ -1,0 +1,80 @@
+site_name: Debugging in Python
+site_description: A hands-on workshop for learning how to debug Python code.
+site_author: Geoffrey Weal
+
+theme:
+  name: material
+  palette:
+    # Automatic mode — follows your operating system's light/dark setting
+    - media: "(prefers-color-scheme)"
+      primary: custom
+      accent: deep orange
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  icon:
+    logo: material/bug-check
+  features:
+    - navigation.footer
+    - navigation.top
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Setup: setup.md
+  - Tutorial:
+      - 1. Reading tracebacks: 01-tracebacks.md
+      - 2. Print debugging: 02-print-debugging.md
+      - 3. Logging: 03-logging.md
+      - 4. The Python debugger (pdb): 04-pdb.md
+      - 5. Debugging in VS Code: 05-vscode.md
+      - 6. Common bugs to look out for: 06-common-bugs.md
+  - Exercises: exercises.md
+  - Cheat sheet: cheatsheet.md
