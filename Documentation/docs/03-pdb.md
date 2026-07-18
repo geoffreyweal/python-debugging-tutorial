@@ -1,6 +1,6 @@
-# 4. The Python debugger (pdb)
+# 3. The Python debugger (pdb)
 
-Imagine your program is a car that won't run properly. Reading a [traceback](01-tracebacks.md) is like inspecting the car *after* it has stalled at the side of the road — you can see where it came to a stop, but not what was happening under the bonnet moment to moment. [Print statements](02-print-debugging.md) and [logs](03-logging.md) are like bolting a few extra gauges to the dashboard and reading them back after a test drive.
+Imagine your program is a car that won't run properly. Reading a [traceback](01-tracebacks.md) is like inspecting the car *after* it has stalled at the side of the road — you can see where it came to a stop, but not what was happening under the bonnet moment to moment. [Print statements and logs](02-print-and-logging.md) are like bolting a few extra gauges to the dashboard and reading them back after a test drive.
 
 A **debugger** is the next level up: it's like being able to freeze the engine mid-rev, lift the bonnet while it's still turning over, and inspect any part — every dial, wire, and moving piston — *in real time*. You can watch the machinery work one step at a time, pause it at the exact moment something looks wrong, and even nudge a part to test a fix before letting it run on.
 
@@ -141,4 +141,4 @@ Save the `orders.py` example above, use the debugger to confirm the bug, then fi
 
     Better still, don't mix the discount into the same dict as the items — data-structure design prevents whole categories of bugs.
 
-Prefer clicking to typing? The same concepts — breakpoints, stepping, inspecting — come with a visual interface in [VS Code](05-vscode.md).
+Prefer clicking to typing? The same concepts — breakpoints, stepping, inspecting — come with a visual interface in [VS Code](04-vscode.md).

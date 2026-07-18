@@ -132,7 +132,7 @@ print("Original data:", readings)
 ```
 
 ??? hint "Hint 1"
-    Two classic bugs from the [common bugs](06-common-bugs.md) page are working together here. First: step through `clean(["17.8", ...])` — sorry, `clean([17.8, -99.0, -99.0, 18.9])` — with a debugger, one `n` at a time, watching `day_readings` in the Variables panel (or `p day_readings` in pdb). What happens to the *second* `-99.0` when the first one is removed?
+    Two classic bugs from the [common bugs](05-common-bugs.md) page are working together here. First: step through `clean(["17.8", ...])` — sorry, `clean([17.8, -99.0, -99.0, 18.9])` — with a debugger, one `n` at a time, watching `day_readings` in the Variables panel (or `p day_readings` in pdb). What happens to the *second* `-99.0` when the first one is removed?
 
 ??? hint "Hint 2"
     Second bug: `clean` never copies. Whose list is it modifying?

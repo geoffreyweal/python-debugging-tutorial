@@ -1,4 +1,4 @@
-# 6. Common bugs to look out for
+# 5. Common bugs to look out for
 
 Most bugs are not exotic. The same dozen mistakes account for a huge share of real-world Python debugging time. Knowing them by sight means you'll often recognise the bug the moment you observe the symptom.
 

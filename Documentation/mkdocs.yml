@@ -71,10 +71,9 @@ nav:
   - Setup: setup.md
   - Tutorial:
       - 1. Reading tracebacks: 01-tracebacks.md
-      - 2. Print debugging: 02-print-debugging.md
-      - 3. Logging: 03-logging.md
-      - 4. The Python debugger (pdb): 04-pdb.md
-      - 5. Debugging in VS Code: 05-vscode.md
-      - 6. Common bugs to look out for: 06-common-bugs.md
+      - 2. Print and logging: 02-print-and-logging.md
+      - 3. The Python debugger (pdb): 03-pdb.md
+      - 4. Debugging in VS Code: 04-vscode.md
+      - 5. Common bugs to look out for: 05-common-bugs.md
   - Exercises: exercises.md
   - Cheat sheet: cheatsheet.md

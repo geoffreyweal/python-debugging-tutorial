@@ -1,4 +1,4 @@
-# 5. Debugging in VS Code
+# 4. Debugging in VS Code
 
 VS Code's visual debugger is `pdb`'s concepts with a friendlier interface: breakpoints are red dots, the call stack is a panel, and every local variable is visible at once without typing `p`.
 
@@ -6,7 +6,7 @@ Make sure you've done the [setup](setup.md#optional-vs-code): VS Code + the Micr
 
 ## Your first debugging session
 
-1. Open a buggy script — the `orders.py` example from the [pdb section](04-pdb.md) works well (remove the `breakpoint()` line first).
+1. Open a buggy script — the `orders.py` example from the [pdb section](03-pdb.md) works well (remove the `breakpoint()` line first).
 2. **Set a breakpoint**: click in the gutter (the space left of the line numbers) next to the first line of `total()`. A red dot appears.
 3. **Start debugging**: press ++f5++ (or *Run → Start Debugging*). When asked for a configuration, choose **Python File**.
 4. Execution pauses at your breakpoint. The line is highlighted, and the debugging UI appears.
@@ -84,11 +84,11 @@ If your script needs arguments (`python3 analyse.py data.csv --fast`), create a 
 
 ## Exercise 5
 
-Take `repeats.py` from the [print debugging section](02-print-debugging.md) (the original, unfixed version, with your prints removed):
+Take `repeats.py` from the [print debugging section](02-print-and-logging.md) (the original, unfixed version, with your prints removed):
 
 1. Set a breakpoint on the `if count > 2:` line.
 2. Press ++f5++ and watch `word` and `count` in the **Variables** panel each time you hit **Continue**.
 3. In the **Debug Console**, evaluate `count > 2` and `count >= 2` when `word` is `"the"`.
 4. Fix the bug, remove the breakpoint, and re-run to confirm.
 
-Now that you have four observation tools — tracebacks, prints, logs, and debuggers — let's look at the [most common bugs](06-common-bugs.md) you'll point them at.
+Now that you have four observation tools — tracebacks, prints, logs, and debuggers — let's look at the [most common bugs](05-common-bugs.md) you'll point them at.

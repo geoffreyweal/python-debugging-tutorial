@@ -119,4 +119,4 @@ print(greet(people[3]))
     print(greet(people[2]))
     ```
 
-Next up: what to do when your program *doesn't* crash but still gives the wrong answer — [print debugging](02-print-debugging.md).
+Next up: what to do when your program *doesn't* crash but still gives the wrong answer — [print debugging](02-print-and-logging.md).

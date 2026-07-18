@@ -6,7 +6,7 @@ You only need a few things for this tutorial.
 
 - **Python 3.9 or newer** (everything here works with the standard library — no packages to install).
 - A **terminal** (Terminal on macOS, PowerShell on Windows, or any Linux shell).
-- **Visual Studio Code** with the **Python extension** (only needed for the [VS Code debugging](05-vscode.md) section).
+- **Visual Studio Code** with the **Python extension** (only needed for the [VS Code debugging](04-vscode.md) section).
 
 ## Check your Python
 
@@ -37,6 +37,6 @@ If you want to follow the visual-debugger section:
 3. Open your `debugging-tutorial` folder with *File → Open Folder…*.
 
 !!! note
-    The first four sections (tracebacks, print debugging, logging, and `pdb`) only need a terminal and a text editor — you can do them anywhere, including on a remote server over SSH. That's part of why they're worth learning even if you normally use an IDE.
+    The first three sections (tracebacks, print and logging, and `pdb`) only need a terminal and a text editor — you can do them anywhere, including on a remote server over SSH. That's part of why they're worth learning even if you normally use an IDE.
 
 That's it — head to [Reading tracebacks](01-tracebacks.md) to begin.
