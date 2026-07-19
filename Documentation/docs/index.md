@@ -9,11 +9,10 @@ Debugging is one of the most important skills a programmer can have — most of 
 By the end of this tutorial you will be able to:
 
 1. **Read a traceback** and work out where and why your program crashed.
-2. Use **print debugging** effectively (and know its limits).
-3. Use the **`logging`** module as a better, permanent alternative to prints.
-4. Step through your code line-by-line with the built-in **Python debugger (`pdb`)** and `breakpoint()`.
-5. Use the **VS Code visual debugger** to set breakpoints, inspect variables, and watch expressions.
-6. Recognise **common Python bugs** (mutable default arguments, off-by-one errors, shadowed names, and more).
+2. Use **`print()` debugging** and the **`logging`** module — quick throwaway diagnostics, and the same idea made permanent and switchable.
+3. Step through your code line-by-line with the built-in **Python debugger (`pdb`)** and `breakpoint()`.
+4. Use the **VS Code visual debugger** to set breakpoints, inspect variables, and watch expressions.
+5. Recognise **common Python bugs** (mutable default arguments, off-by-one errors, shadowed names, and more).
 
 ## How this tutorial works
 
