@@ -123,7 +123,7 @@ This is often the fastest way to diagnose a crash: no code changes at all, and `
 !!! tip "In Jupyter notebooks"
     After a cell raises an exception, run `%debug` in the next cell — you get the same post-mortem `(Pdb)` prompt at the point of failure. There's also `%pdb on` to enter it automatically on every error.
 
-## Exercise 4
+## Exercise 3
 
 Save the `orders.py` example above, use the debugger to confirm the bug, then fix `total()` so the discount key is not summed as a price. Verify with the debugger (or a print) that the result is `25.65`.
 

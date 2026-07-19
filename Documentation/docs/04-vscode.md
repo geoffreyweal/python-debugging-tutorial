@@ -82,7 +82,7 @@ If your script needs arguments (`python3 analyse.py data.csv --fast`), create a 
 !!! tip "Which Python is it using?"
     The debugger uses the interpreter shown in VS Code's status bar (bottom-right). If imports fail in the debugger but work in your terminal, you're probably running two different Pythons — click the interpreter name and select the right environment.
 
-## Exercise 5
+## Exercise 4
 
 Take `repeats.py` from the [print debugging section](02-print-and-logging.md) (the original, unfixed version, with your prints removed):
 

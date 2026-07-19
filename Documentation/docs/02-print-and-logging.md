@@ -2,7 +2,7 @@
 
 The simplest debugging technique: put `print()` statements in your code to see what's actually happening. Everyone does it, it works everywhere, and done *well* it's genuinely effective.
 
-This page covers two closely related techniques: quick, throwaway **`print()` debugging**, and **`logging`** — the same idea made permanent and switchable. We'll start with prints.
+This page covers two closely related techniques: quick, throwaway `print()` debugging, and `logging` — the same idea made permanent and switchable. We'll start with prints.
 
 ## A buggy example
 
@@ -136,7 +136,7 @@ from pprint import pprint
 pprint(response_data)        # nicely indented, keys sorted
 ```
 
-## Exercise 2
+## Exercise 2a
 
 This function should return the largest number in a list, but `largest([5, -2, -7])` returns `0` instead of `5` for some inputs... wait, actually it returns `5` there. Try `largest([-5, -2, -7])`. Use labelled prints (or `f"{...=}"`) to find out why it returns `0` instead of `-2`.
 
@@ -309,9 +309,9 @@ logging.basicConfig(
 | "This shouldn't happen but isn't fatal" | `logging.warning()` |
 | Output that *is the program's product* (e.g. results) | `print()` |
 
-## Exercise 3
+## Exercise 2b
 
-Take your fixed `largest.py` from [Exercise 2](#exercise-2) (or the `repeats.py` example) and:
+Take your fixed `largest.py` from [Exercise 2a](#exercise-2a) (or the `repeats.py` example) and:
 
 1. Replace every debug `print` with `logger.debug(...)`.
 2. Add a `logger.info(...)` line summarising the result.

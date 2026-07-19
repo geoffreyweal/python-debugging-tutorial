@@ -136,7 +136,7 @@ Not all bugs are in the code. Frequently the code is fine and you are:
 
 **Defence:** add `print("running", __file__)` at the top when confused; check `import os; print(os.getcwd())`; check `import sys; print(sys.executable)`.
 
-## Exercise 6
+## Exercise 5
 
 Each snippet below contains one bug from this page. Identify it *before* running the code, then verify with any technique you like.
 
