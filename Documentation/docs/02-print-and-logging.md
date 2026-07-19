@@ -2,7 +2,12 @@
 
 The simplest debugging technique: put `print()` statements in your code to see what's actually happening. Everyone does it, it works everywhere, and done *well* it's genuinely effective.
 
-This page covers two closely related techniques: quick, throwaway `print()` debugging, and `logging` — the same idea made permanent and switchable. We'll start with prints.
+This page covers two closely related techniques: 
+
+* Quick, throwaway `print()` debugging, and 
+* `logging` — the same idea made permanent and switchable. 
+
+We'll start with prints.
 
 ## A buggy example
 
@@ -44,20 +49,24 @@ print(f"name = {name!r}")     # name = 'Alice '   <-- aha, trailing space
 
 Applying this to our example:
 
-```python hl_lines="6 9"
+```python hl_lines="6-7 11-12"
 def count_repeated_words(sentence):
     words = sentence.split()
     counts = {}
     for word in words:
         counts[word] = counts.get(word, 0) + 1
+    # applies Rule 1 (labelled) & Rule 3 (prints the result of the first loop)
     print(f"DEBUG counts = {counts}")
 
     repeated = 0
     for word, count in counts.items():
+        # applies Rule 1 (labelled) & Rule 2 (word!r shows the true value)
         print(f"DEBUG checking {word!r}: count={count}, count > 2 is {count > 2}")
         if count > 2:
             repeated += 1
     return repeated
+
+print(count_repeated_words("the cat sat on the mat")) # expected 1 ("the"), got 0
 ```
 
 ```console
@@ -70,6 +79,31 @@ DEBUG checking 'cat': count=1, count > 2 is False
 ```
 
 Now the bug is obvious: `counts` is correct (`'the'` appears 2 times), but the condition `count > 2` should be `count >= 2` (or `count > 1`). The first loop was never the problem — without the prints, you might have stared at it for ten minutes.
+
+With the fix applied — `count > 2` becomes `count >= 2`, and the debugging prints removed — `repeats.py` reads:
+
+```python title="repeats.py" hl_lines="9"
+def count_repeated_words(sentence):
+    words = sentence.split()
+    counts = {}
+    for word in words:
+        counts[word] = counts.get(word, 0) + 1
+
+    repeated = 0
+    for word, count in counts.items():
+        if count >= 2:          # fixed: was count > 2
+            repeated += 1
+    return repeated
+
+print(count_repeated_words("the cat sat on the mat"))  # now correctly prints 1
+```
+
+Running it now gives the expected answer:
+
+```console
+$ python3 repeats.py
+1
+```
 
 ## Prints help even when the program *does* crash
 
@@ -200,7 +234,7 @@ The last of those limits — hunting down every `print` when you're done, then r
 ```python title="basic_logging.py"
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
 logging.debug("Detailed diagnostic info")
 logging.info("Something normal happened")
@@ -211,19 +245,30 @@ logging.critical("The program cannot continue")
 
 ```console
 $ python3 basic_logging.py
-DEBUG:root:Detailed diagnostic info
-INFO:root:Something normal happened
-WARNING:root:Something unexpected, but we can continue
-ERROR:root:Something failed
-CRITICAL:root:The program cannot continue
+DEBUG: Detailed diagnostic info
+INFO: Something normal happened
+WARNING: Something unexpected, but we can continue
+ERROR: Something failed
+CRITICAL: The program cannot continue
 ```
 
-The five **levels** are the whole trick. Each message has a level, and `basicConfig(level=...)` sets the minimum level that gets shown:
+There are five **levels** when setting logging statements. Each message has a level, and `basicConfig(level=...)` sets the minimum level that gets shown:
 
 - With `level=logging.DEBUG` you see everything — this is "debugging mode".
 - With `level=logging.WARNING` (the default) the `debug` and `info` messages vanish — this is "normal mode".
 
 So instead of deleting your debug prints, you write them as `logging.debug(...)` and just change one line when you're done.
+
+!!! tip "Customising the output with `format`"
+    The **`format`** argument controls what each line looks like, using `%`-style placeholders. Without it you get the default `DEBUG:root:...`; the placeholders you'll reach for most are:
+
+    | Placeholder | Shows |
+    |---|---|
+    | `%(asctime)s` | the timestamp |
+    | `%(levelname)s` | the level (`DEBUG`, `INFO`, …) |
+    | `%(name)s` | which logger emitted the message |
+    | `%(message)s` | your message |
+    | `%(filename)s` / `%(lineno)d` | the source file and line number |
 
 ### A realistic setup
 

@@ -31,21 +31,21 @@ Run it normally, and the program stops at the breakpoint and gives you a `(Pdb)`
 
 ```console
 $ python3 orders.py
-> /Users/you/orders.py(11)total()
--> return result
+> /Users/you/orders.py(10)total()
+-> breakpoint()
 (Pdb)
 ```
 
-The `->` line shows the **next line to be executed**. Now you can look around:
+The `->` line shows where you're paused — on the `breakpoint()` call, with `result` already computed and about to be returned. Now you can look around:
 
 ```text
 (Pdb) result
-25.65
+34.65
 (Pdb) order
 {'book': 25.0, 'pen': 3.5, 'discount': 10}
 ```
 
-Hmm — `25.65`? The items sum to `28.50`, minus 10% should be `25.65`... but wait, the loop also added the *discount value itself* (`10`) into the sum: `25 + 3.5 + 10 = 38.5`. Let's check:
+Hmm — `34.65`? Book and pen come to `28.50`, so 10% off *should* give `25.65` — but we got `34.65`. The loop also added the *discount value itself* (`10`) into the sum: `25 + 3.5 + 10 = 38.5`, and `38.5` minus 10% is `34.65`. Let's confirm what the items alone come to:
 
 ```text
 (Pdb) sum(price for item, price in order.items() if item != "discount")
@@ -80,19 +80,47 @@ A typical session: use `w` to see where you are, `ll` to see the code, `p`/`pp` 
 
 ## Stepping through the bug
 
-Move the `breakpoint()` to the top of `total()` and walk through the loop:
+Move the `breakpoint()` to the top of `total()`:
+
+```python title="orders.py" hl_lines="6"
+def apply_discount(price, percent):
+    discount = price * percent / 100
+    return price - discount
+
+def total(order):
+    breakpoint()
+    result = 0
+    for item, price in order.items():
+        result += price
+    result = apply_discount(result, order.get("discount", 0))
+    return result
+
+order = {"book": 25.00, "pen": 3.50, "discount": 10}
+print(total(order))
+```
+
+Now run it and walk through the loop with `n`, checking `item` and `price` on each pass:
 
 ```text
+> orders.py(6)total()
+-> breakpoint()
 (Pdb) n
 > orders.py(7)total()
--> for item, price in order.items():
+-> result = 0
 (Pdb) n
 > orders.py(8)total()
+-> for item, price in order.items():
+(Pdb) n
+> orders.py(9)total()
 -> result += price
 (Pdb) p item, price
 ('book', 25.0)
 (Pdb) n
+> orders.py(8)total()
+-> for item, price in order.items():
 (Pdb) n
+> orders.py(9)total()
+-> result += price
 (Pdb) p item, price
 ('pen', 3.5)
 (Pdb) n

@@ -24,8 +24,8 @@ Any version from 3.9 up is fine.
 Make a folder to hold the example scripts you'll write during the tutorial:
 
 ```console
-$ mkdir debugging-tutorial
-$ cd debugging-tutorial
+mkdir debugging-tutorial
+cd debugging-tutorial
 ```
 
 ## Optional: VS Code

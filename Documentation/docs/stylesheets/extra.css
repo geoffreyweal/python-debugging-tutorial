@@ -21,3 +21,13 @@
 [data-md-color-scheme="slate"] {
   --md-typeset-a-color: #6ba3d6;
 }
+
+/* Centre tables that live inside an admonition (e.g. the logging `format`
+ * placeholder table). Material renders tables as `display: inline-block`,
+ * so we switch to `display: table` to make the auto side-margins centre it. */
+.md-typeset .admonition table:not([class]),
+.md-typeset details table:not([class]) {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}

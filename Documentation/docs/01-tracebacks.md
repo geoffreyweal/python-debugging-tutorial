@@ -107,8 +107,8 @@ print(greet(people[3]))
 
 ??? success "Solution"
     1. **`SyntaxError`** — missing colon after `def greet(name)`.
-    2. **`NameError: name 'mesage' is not defined`** — typo: `mesage` should be `message`.
-    3. **`IndexError: list index out of range`** — the list has indices 0–2, so `people[3]` doesn't exist. Use `people[2]` (or any valid index).
+    2. **`IndexError: list index out of range`** — the list has indices 0–2, so `people[3]` doesn't exist. Use `people[2]` (or any valid index).
+    3. **`NameError: name 'mesage' is not defined`** — typo: `mesage` should be `message`.
 
     ```python
     def greet(name):
