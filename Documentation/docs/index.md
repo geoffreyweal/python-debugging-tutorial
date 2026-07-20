@@ -8,7 +8,7 @@ This tutorial will help you build the skills to diagnose problems quickly and co
 
 ## What kinds of bugs?
 
-A useful way to categorize bugs is when and how they reveal themselves:
+A useful way to categorise bugs is when and how they reveal themselves:
 
 1. Syntax errors. Caught before the code even runs — invalid Python grammar (missing colons, unmatched parentheses, bad indentation). Python's parser flags these immediately with a `SyntaxError`.
 
