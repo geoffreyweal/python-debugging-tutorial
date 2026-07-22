@@ -1,0 +1,33 @@
+/* Custom primary colour: the blue from the official Python logo.
+ *
+ * The Python logo uses a two-tone blue gradient. The values below are the
+ * standard Python brand blues:
+ *   #3776AB  Python blue      (the shade used in the Python badge/wordmark)
+ *   #4B8BBE  lighter blue     (top of the logo's gradient)
+ *   #306998  darker blue      (bottom of the logo's gradient)
+ *
+ * `:root > *` (rather than plain `:root`) is the approach recommended by
+ * Material for MkDocs so these values win for BOTH the light (default) and
+ * dark (slate) colour schemes.
+ */
+:root > * {
+  --md-primary-fg-color:        #3776AB;
+  --md-primary-fg-color--light: #4B8BBE;
+  --md-primary-fg-color--dark:  #306998;
+}
+
+/* In dark mode, brighten the link colour so it stays readable against the
+ * dark background (the medium Python blue is a little dim on slate). */
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #6ba3d6;
+}
+
+/* Centre tables that live inside an admonition (e.g. the logging `format`
+ * placeholder table). Material renders tables as `display: inline-block`,
+ * so we switch to `display: table` to make the auto side-margins centre it. */
+.md-typeset .admonition table:not([class]),
+.md-typeset details table:not([class]) {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
