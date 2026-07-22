@@ -19,6 +19,9 @@ Python 3.14.4
 
 Any version from 3.9 up is fine.
 
+!!! note "On Windows"
+    The command is usually `python` or `py` rather than `python3` — typing `python3` in PowerShell often opens the Microsoft Store instead of running Python. Use whichever prints a version, and substitute it wherever this tutorial says `python3`.
+
 ## Create a working folder
 
 Make a folder to hold the example scripts you'll write during the tutorial:

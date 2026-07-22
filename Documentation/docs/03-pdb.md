@@ -38,6 +38,9 @@ $ python3 orders.py
 
 The `->` line shows where you're paused — on the `breakpoint()` call, with `result` already computed and about to be returned. Now you can look around:
 
+!!! note "Python 3.12 and earlier"
+    Before Python 3.13, pdb pauses on the line *after* `breakpoint()` (here `-> return result`), so your `->` line may differ slightly from the transcripts on this page. Everything else works the same.
+
 ```text
 (Pdb) result
 34.65
@@ -65,8 +68,8 @@ At the `(Pdb)` prompt, single letters are commands:
 | `s` | `step` | Like `n`, but steps *into* function calls. |
 | `r` | `return` | Run until the current function returns. |
 | `c` | `continue` | Resume normal execution (until the next breakpoint, if any). |
-| `p expr` | `print` | Evaluate and print an expression, e.g. `p result`. |
-| `pp expr` | `pretty-print` | Like `p` but pretty-printed — great for dicts. |
+| `p expr` | — | Evaluate and print an expression, e.g. `p result`. |
+| `pp expr` | — | Like `p` but pretty-printed — great for dicts. |
 | `w` | `where` | Show the call stack (where am I, and who called me?). |
 | `u` / `d` | `up` / `down` | Move up/down the call stack to inspect the caller's variables. |
 | `b 15` | `break` | Set another breakpoint at line 15. |
@@ -124,7 +127,11 @@ Now run it and walk through the loop with `n`, checking `item` and `price` on ea
 (Pdb) p item, price
 ('pen', 3.5)
 (Pdb) n
+> orders.py(8)total()
+-> for item, price in order.items():
 (Pdb) n
+> orders.py(9)total()
+-> result += price
 (Pdb) p item, price
 ('discount', 10)        <-- there's the bug: the discount is being summed as a price
 ```
@@ -139,14 +146,15 @@ Traceback (most recent call last):
   ...
 ZeroDivisionError: division by zero
 Uncaught exception. Entering post mortem debugging
+Running 'cont' or 'step' will restart the program
 > average.py(2)average()
 -> return sum(numbers) / len(numbers)
 (Pdb) p numbers
 []
-(Pdb) w      # who called us with an empty list?
+(Pdb) w
 ```
 
-This is often the fastest way to diagnose a crash: no code changes at all, and `w`, `u`, `p` let you inspect every frame of the failed call stack.
+This is often the fastest way to diagnose a crash: no code changes at all, and `w`, `u`, `p` let you inspect every frame of the failed call stack — here, `w` shows exactly who called `average` with an empty list.
 
 !!! tip "In Jupyter notebooks"
     After a cell raises an exception, run `%debug` in the next cell — you get the same post-mortem `(Pdb)` prompt at the point of failure. There's also `%pdb on` to enter it automatically on every error.

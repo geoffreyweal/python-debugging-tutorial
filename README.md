@@ -21,11 +21,10 @@ Documentation/
     ├── index.md            # welcome + the debugging method
     ├── setup.md            # requirements
     ├── 01-tracebacks.md    # reading error messages
-    ├── 02-print-debugging.md
-    ├── 03-logging.md
-    ├── 04-pdb.md           # breakpoint() and the built-in debugger
-    ├── 05-vscode.md        # the VS Code visual debugger
-    ├── 06-common-bugs.md   # bug patterns to recognise on sight
+    ├── 02-print-and-logging.md  # print debugging and the logging module
+    ├── 03-pdb.md           # breakpoint() and the built-in debugger
+    ├── 04-vscode.md        # the VS Code visual debugger
+    ├── 05-common-bugs.md   # bug patterns to recognise on sight
     ├── exercises.md        # three larger buggy programs to fix
     └── cheatsheet.md       # one-page summary
 ```

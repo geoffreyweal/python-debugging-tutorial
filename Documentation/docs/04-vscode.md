@@ -39,7 +39,7 @@ While paused, the **Debug Console** tab (bottom panel) is a live Python prompt i
 sum(price for item, price in order.items() if item != "discount")
 ```
 
-You can even modify variables (`result = 28.5`) and continue, to test "would the fix work?" before editing any code.
+You can even modify variables to test "would the fix work?" before editing any code: press **Step Over** (++f10++) until you're paused on the `result = apply_discount(...)` line, type `result = 28.5` in the Debug Console, then **Continue** — the program prints `25.65`, the correct answer. (If you set `result` while paused at the top of `total()`, the `result = 0` line and the buggy loop simply overwrite it.)
 
 ## Conditional breakpoints
 

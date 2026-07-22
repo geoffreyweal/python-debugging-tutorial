@@ -45,7 +45,7 @@ print(f"counts after loop: {counts}")
 print(f"name = {name!r}")     # name = 'Alice '   <-- aha, trailing space
 ```
 
-**Rule 3 — print at the boundaries.** Print a function's inputs at the top and its result just before `return`. If the inputs are right and the output is wrong, the bug is inside; if the inputs are already wrong, look at the caller.
+**Rule 3 — print at the boundaries.** Print a function's inputs at the top, its result just before `return`, and the result of each distinct stage in between. If the inputs are right and the output is wrong, the bug is inside; if the inputs are already wrong, look at the caller.
 
 Applying this to our example:
 
@@ -252,7 +252,7 @@ ERROR: Something failed
 CRITICAL: The program cannot continue
 ```
 
-There are five **levels** when setting logging statements. Each message has a level, and `basicConfig(level=...)` sets the minimum level that gets shown:
+Logging statements come in five **levels**. Each message has a level, and `basicConfig(level=...)` sets the minimum level that gets shown:
 
 - With `level=logging.DEBUG` you see everything — this is "debugging mode".
 - With `level=logging.WARNING` (the default) the `debug` and `info` messages vanish — this is "normal mode".

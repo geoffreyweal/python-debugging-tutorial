@@ -13,14 +13,14 @@ for i in range(1, len(scores)):   # oops: starts at 1, skips scores[0]
 ```
 
 **Symptom:** first/last item mysteriously missing, or `IndexError`.
-**Defence:** iterate directly (`for score in scores:`) whenever you don't truly need the index; if you need both, use `enumerate(scores)`.
+**Defence:** iterate directly (`for score in scores:`) whenever you don't truly need the index; if you need both the index and the value, use `enumerate(scores)`.
 
 ## Integer vs. float division, and string vs. number
 
 ```python
 half = 5 // 2        # 2, not 2.5 — // is floor division
 age = input("Age? ") # input() ALWAYS returns a string
-next_year = age + 1  # TypeError: can only concatenate str to str
+next_year = age + 1  # TypeError: can only concatenate str (not "int") to str
 ```
 
 **Symptom:** `TypeError` mentioning `str` and `int`, or numeric results that are slightly off.
@@ -55,13 +55,13 @@ Assignment never copies. `b = a` makes `b` point at the *same* list/dict as `a`:
 
 ```python
 original = [1, 2, 3]
-copy = original          # NOT a copy
-copy.append(4)
+duplicate = original     # NOT a copy
+duplicate.append(4)
 print(original)          # [1, 2, 3, 4]  <-- modified through the other name
 ```
 
 **Symptom:** a variable changes when you "didn't touch it".
-**Defence:** `copy = list(original)` or `original.copy()`; for nested structures, `copy.deepcopy()`.
+**Defence:** `duplicate = list(original)` or `original.copy()`; for nested structures, `copy.deepcopy()`.
 
 ## Modifying a list while iterating over it
 
@@ -81,7 +81,7 @@ print(numbers)                # [1, 3, 5] here, but this pattern misses items in
 ```python
 names = ["Charlie", "Alice", "Bob"]
 names = names.sort()      # sort() sorts in place and returns None
-print(names[0])           # AttributeError / TypeError: 'NoneType' ...
+print(names[0])           # TypeError: 'NoneType' object is not subscriptable
 ```
 
 **Symptom:** `'NoneType' object has no attribute ...` or `is not subscriptable`.
@@ -114,7 +114,7 @@ Both versions are valid Python — only the indentation says which you meant. A 
 **Symptom:** loop runs once, or something happens N times that should happen once.
 **Defence:** when a loop misbehaves, check the indentation of its last lines first.
 
-## `==` vs `is`, and floating-point equality
+## `==` vs. `is`, and floating-point equality
 
 ```python
 if answer == True: ...    # works, but just write: if answer:

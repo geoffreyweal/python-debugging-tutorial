@@ -52,7 +52,7 @@ print_report(students)
 
 ## Exercise B: The word counter *(wrong answer)*
 
-This script should count word frequencies in a piece of text, ignoring case and punctuation, and print the top 3. It runs without errors — but the counts are wrong: `"the"` should appear 4 times, yet it's reported 3 times, and `"cat!"` appears as its own word.
+This script should count word frequencies in a piece of text, ignoring case and punctuation, and print the top 3. It runs without errors — but the output is wrong: it prints only *two* words instead of three, and `"the"` is reported just 2 times when it should be 5.
 
 ```python title="wordcount.py"
 text = "The cat sat on the mat. The dog saw the cat! The end."
@@ -81,7 +81,7 @@ for word in top_words(counts, 3):
     For the second: `top_words` is asked for the top 3 but returns 2 words — and not the two you'd expect. Look very carefully at the slice.
 
 ??? success "Solution"
-    1. **Case is never ignored** — `"The"` and `"the"` are counted separately. Add `word = word.lower()` (this also handles why the count was 3 not 4).
+    1. **Case is never ignored** — `"The"` and `"the"` are counted separately. Add `word = word.lower()` (this is why `"the"` came out as 2: its count was split into `"The": 3` and `"the": 2` instead of a single `"the": 5`).
     2. **Off-by-one in the slice** — `ranked[1:n]` skips the most frequent word and returns only `n-1` items. It should be `ranked[:n]`.
 
     ```python
@@ -97,15 +97,15 @@ for word in top_words(counts, 3):
         return ranked[:n]
     ```
 
-    (If `"cat!"` still shows up as its own word for you, check you kept the `strip` — and note `strip` only removes from the ends, which is fine here.)
+    (Note `strip` only removes characters from the *ends* of a word — which is all we need here.)
 
 ---
 
 ## Exercise C: The lab-results pipeline *(subtle)*
 
-This script processes a week of sensor readings: it removes obviously bad readings (negative values), converts to Fahrenheit for a US collaborator, and reports each day's readings alongside the original data. It runs — but the "original" data has been mangled, and Tuesday's report is missing a reading that should have survived the cleaning.
+This script processes a week of sensor readings: it removes obviously bad readings (negative values), converts to Fahrenheit for a US collaborator, and reports each day's readings alongside the original data. It runs — but the "original" data has been mangled, and Tuesday's report still contains a bad reading that the cleaning should have removed.
 
-```python title="pipeline.py"
+```python title="sensors.py"
 readings = {
     "Mon": [18.2, 19.1, -99.0, 20.3],
     "Tue": [17.8, -99.0, -99.0, 18.9],
@@ -138,7 +138,7 @@ print("Original data:", readings)
     Second bug: `clean` never copies. Whose list is it modifying?
 
 ??? success "Solution"
-    1. **Modifying a list while iterating over it.** When the first `-99.0` is removed, the list shifts left and the loop skips the element that moved into its place — the second consecutive `-99.0` survives... actually watch closely: the *skipped* element here is the second `-99.0`, so Tuesday keeps a bad reading. Consecutive bad values are exactly the case this pattern gets wrong.
+    1. **Modifying a list while iterating over it.** When the first `-99.0` is removed, the list shifts left and the loop skips the element that moved into its place — the second consecutive `-99.0` is never checked, so it survives and Tuesday keeps a bad reading. Consecutive bad values are exactly the case this pattern gets wrong.
     2. **Aliasing.** `clean` mutates the caller's list in place, so the "original" `readings` printed at the end has been modified.
 
     Fix both by building a new list:
