@@ -2,7 +2,24 @@
 
 This is a hands-on tutorial for learning how to **find and fix bugs in Python code**.
 
-Debugging is one of the most important skills a programmer can have — most of the time you spend "programming" is actually spent working out why your code isn't doing what you expected. The good news is that debugging is a learnable, systematic skill.
+Every programmer, from beginner to expert, eventually runs into code that doesn't behave as expected—a variable holding the wrong value, a function raising a cryptic exception, or a program that silently produces incorrect output. Debugging is the systematic process of finding and fixing these issues, and it's a skill just as important as writing the code itself. 
+
+This tutorial will help you build the skills to diagnose problems quickly and confidently, turning debugging from a frustrating chore into a methodical part of the development process.
+
+## What kinds of bugs?
+
+A useful way to categorise bugs is when and how they reveal themselves:
+
+1. Syntax errors. Caught before the code even runs — invalid Python grammar (missing colons, unmatched parentheses, bad indentation). Python's parser flags these immediately with a `SyntaxError`.
+
+2. Runtime errors (exceptions). The code is syntactically valid but crashes during execution — `TypeError`, `ValueError`, `IndexError`, `KeyError`, `AttributeError`, etc. These are usually the easiest to debug because Python gives you a traceback pointing to the exact line.
+
+3. Logic errors (semantic bugs)
+The most insidious category — the program runs to completion without any error, but produces the wrong result. No traceback, no crash, just silently incorrect behavior (e.g., an off-by-one loop, a flipped comparison operator, wrong operator precedence).
+
+This training will focus on 1-3. There are other bugs you may need to be aware of, however. These include performance bugs, concurrency bugs, and memory leaks and other resource bugs.
+
+Even as AI coding assistants become adept at writing and even fixing code, strong debugging skills remain indispensable—arguably more so than ever. AI-generated code can look plausible while harboring subtle logic errors or bugs that only surface under specific runtime conditions the model never considered. Without the ability to reason about program state, and methodically isolate a failure, a developer is left overtrusting the AI's output, leading to a cycle of superficial patches that mask the real problem. Debugging skill is also what lets you evaluate AI suggestions critically: knowing how to set a breakpoint, inspect a variable, or write a targeted test gives you the means to verify a fix rather than take it on faith.
 
 ## What you will learn
 
